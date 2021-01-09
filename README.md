@@ -10,11 +10,11 @@ I'm using this project to:
 * Increase and enhance my Programing Skills
 * Refurbish and enhance my understaning of Numerical Methods and Math in general
 
-References:
+## References
 
 * SPE Monograph [Phase Behavior] (https://store.spe.org/Phase-Behavior-P46.aspx)
 
-Ready tools for Testing:
+## Ready tools for Testing
 
 1. `C7+` Charachterization using `Gamma` function
 
