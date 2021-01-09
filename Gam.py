@@ -46,8 +46,8 @@ class Gamma:
         return _zn_plus_split, _mw_plus_split
 
     def split_error(self, split_limit):
-        zn_plus_cal, b = self.split(self.scn_start, self.scn_plus_start, split_limit, self.h, self.alpha, self.beta, self.lower_bound)
-        return (zn_plus_cal - self.zn_plus_lab)**2
+        output = self.split(self.scn_start, self.scn_plus_start, split_limit, self.h, self.alpha, self.beta, self.lower_bound)
+        return (output[0] - self.zn_plus_lab)**2
 
 
     def optimize_split(self, maximum_split_):
@@ -77,9 +77,9 @@ class Gamma:
         self.lower_bound = np.array(scn_in[0] * 14) + h_in - 7
         x_cdf_char = np.array(scn_in * 14) + h_in + 7 - self.lower_bound
 
-        fit_parameters, fit_convergence = curve_fit(self.gamma_parameters, x_cdf_char, zni_cum_lab)
-        self.alpha = fit_parameters[0]
-        self.beta = fit_parameters[1]
+        fit_parameters = curve_fit(self.gamma_parameters, x_cdf_char, zni_cum_lab)
+        self.alpha = fit_parameters[0][0]
+        self.beta = fit_parameters[0][1]
 
         self.maximum_split = self.optimize_split(self.maximum_split)
         self.zn_plus_split, self.mw_plus_split = self.split(self.scn_start, self.scn_plus_start, self.maximum_split, self.h, self.alpha, self.beta, self.lower_bound)

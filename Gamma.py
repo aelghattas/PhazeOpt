@@ -41,8 +41,8 @@ def split(scn_start_, scn_plus_start_, scn_plus_end_, h_, alpha_, beta_, lower_b
 
 
 def split_error(split_limit):
-    zn_plus_cal, b = split(scn_start, scn_plus_start, split_limit, h, alpha, beta, lower_bound)
-    return (zn_plus_cal - zn_plus_lab)**2
+    output = split(scn_start, scn_plus_start, split_limit, h, alpha, beta, lower_bound)
+    return (output[0] - zn_plus_lab)**2
 
 
 def optimize_split(maximum_split_):
@@ -91,9 +91,10 @@ def characterized(scn_in, mi_in, mf_in, h_in):
     lower_bound = np.array(scn_in[0] * 14) + h_in - 7
     x_cdf_char = np.array(scn_in * 14) + h_in + 7 - lower_bound
 
-    fit_parameters, fit_convergence = curve_fit(gamma_parameters, x_cdf_char, zni_cum_lab)
-    alpha = fit_parameters[0]
-    beta = fit_parameters[1]
+    fit_parameters = curve_fit(gamma_parameters, x_cdf_char, zni_cum_lab)
+    alpha = fit_parameters[0][0]
+    beta = fit_parameters[0][1]
+
 
     maximum_split = optimize_split(maximum_split)
     zn_plus_split, mw_plus_split = split(scn_start, scn_plus_start, maximum_split, h, alpha, beta, lower_bound)
