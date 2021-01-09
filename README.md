@@ -12,7 +12,7 @@ I'm using this project to:
 
 ## References
 
-* SPE Monograph [PhaseBehavior] (https://store.spe.org/Phase-Behavior-P46.aspx) is the backbone of this work
+* SPE Monograph [PhaseBehavior](https://store.spe.org/Phase-Behavior-P46.aspx) is the backbone of this work
 
 ## Ready tools for Testing
 
